@@ -7,8 +7,11 @@
 ## How to
 
 * 制作镜像
+
 > $ docker build -t hitworker .
 
 * 上传镜像到Docker Hub
+
 > $ docker tag hitworker:latest user_name/hitworker:latest
+
 > $ docker push user_name/hitworker:latest
