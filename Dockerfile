@@ -2,11 +2,8 @@ FROM amd64/ubuntu:20.04
 
 MAINTAINER chyiyaqing <chyiyaqing@gmail.com>
 
-# install wget curl net-tools
-RUN apt-get update && apt-get install curl -y
-
-# locales
-RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+# locales and curl
+RUN apt-get update && apt-get install -y locales curl && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 # Golang
@@ -26,5 +23,8 @@ RUN cd /opt && curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setu
     bash nodesource_setup.sh && \
     # The NodeSource nodejs package contains both the node binary and npm
     apt install nodejs -y
+
+# Install gcc
+RUN apt-get install gcc -y
 
 CMD ["/usr/bin/go"]
